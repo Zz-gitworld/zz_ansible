@@ -1,0 +1,9 @@
+---
+- hosts: 10.128.123.1
+  become: true
+  become_user: root
+  tasks:
+    - command: 'cat {{ "/tmp/a.conf"|default(ansible_env.AP_FILE_TO_CAT) }}'
+      register: cat
+    - debug:
+       var: cat
